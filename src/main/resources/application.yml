@@ -1,0 +1,28 @@
+spring:
+
+  kafka:
+    listener:
+      type: batch
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      max-poll-records: 10000
+      properties:
+        spring.json.value.default.type: com.example.kafkabatch.model.entity.Customer
+        spring.json.trusted.packages: '*'
+  data:
+    mongodb:
+      database: register
+      host: localhost
+      port: 27017
+
+server:
+  port: 8087
+
+#logging:
+#  level:
+#    org.springframework.kafka: DEBUG
+
